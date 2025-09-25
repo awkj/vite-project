@@ -10,10 +10,10 @@ export default function App() {
   const [currentSupplier, setCurrentSupplier] = useState<Supplier>('wyc')
 
   // 状态管理当前使用的环境
-  const [currentEnvironment, setCurrentEnvironment] = useState<Environment>('production')
+  const [env, setCurrentEnvironment] = useState<Environment>('production')
 
   // 根据当前供应商和环境获取对应的侧边栏配置
-  const sidebarConfig = getSidebarConfig(currentSupplier, currentEnvironment)
+  const sidebarConfig = getSidebarConfig(currentSupplier, env)
 
   return (
     <BrowserRouter>
@@ -22,7 +22,7 @@ export default function App() {
         <ConfigurableSidebar
           config={sidebarConfig}
           currentSupplier={currentSupplier}
-          currentEnvironment={currentEnvironment}
+          env={env}
           onSupplierChange={setCurrentSupplier}
           onEnvironmentChange={setCurrentEnvironment}
         />

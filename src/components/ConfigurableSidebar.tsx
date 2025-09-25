@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import type { Environment, Supplier } from '../config/sidebarConfig'
 import type { SidebarConfig } from '../types/sidebar'
-import { getEnvironmentClass } from '../utils/styleUtils'
+import { envClass } from '../utils/styleUtils'
 import ConfigSwitcher from './sidebar/ConfigSwitcher'
 import IconMenuItem from './sidebar/IconMenuItem'
 import SidebarCollapseToggle from './sidebar/SidebarCollapseToggle'
@@ -13,17 +13,19 @@ import SidebarUserInfo from './sidebar/SidebarUserInfo'
 interface ConfigurableSidebarProps {
   config: SidebarConfig
   currentSupplier: Supplier
-  currentEnvironment: Environment
+  env: Environment
   onSupplierChange: (supplier: Supplier) => void
   onEnvironmentChange: (environment: Environment) => void
 }
 
-export function ConfigurableSidebar({ config,
+export function ConfigurableSidebar({
+  config,
   currentSupplier,
-  currentEnvironment,
+  env,
   onSupplierChange,
   onEnvironmentChange
 }: ConfigurableSidebarProps) {
+  // 简短别名
   const [expandedGroups, setExpandedGroups] = useState<string[]>([])
   const [isCollapsed, setIsCollapsed] = useState(false)
   const location = useLocation()
@@ -47,10 +49,10 @@ export function ConfigurableSidebar({ config,
   return (
     <div className={`flex h-screen flex-col border-e border-gray-100 bg-white transition-all duration-300 relative ${isCollapsed ? 'w-16' : 'w-1/8'}`}>
       {/* 环境主题样式 */}
-      <div className={`absolute inset-0 pointer-events-none ${getEnvironmentClass(currentEnvironment, 'background')} ${getEnvironmentClass(currentEnvironment, 'border')} transition-colors duration-300 z-0`}></div>
+      <div className={`absolute inset-0 pointer-events-none ${envClass(env, 'background')} ${envClass(env, 'border')} transition-colors duration-300 z-0`}></div>
 
-      {/* 生产环境提示条 */}
-      <div className={`absolute top-0 left-0 right-0 h-2 ${getEnvironmentClass(currentEnvironment, 'topBackground')} z-20`}></div>
+      {/* 环境提示条 */}
+      <div className={`absolute top-0 left-0 right-0 h-2 ${envClass(env, 'topBackground')} z-20`}></div>
 
       {/* 主要内容区域 */}
       {!isCollapsed && (
@@ -106,7 +108,7 @@ export function ConfigurableSidebar({ config,
             {/* Config Switcher */}
             <ConfigSwitcher
               currentSupplier={currentSupplier}
-              currentEnvironment={currentEnvironment}
+              currentEnvironment={env}
               onSupplierChange={onSupplierChange}
               onEnvironmentChange={onEnvironmentChange}
             />
@@ -125,7 +127,7 @@ export function ConfigurableSidebar({ config,
           {/* Logo (icon only) */}
           {config.logo && (
             <div className="mb-6 text-center" onClick={config.logo.onClick}>
-              <svg className={`size-6 ${getEnvironmentClass(currentEnvironment, 'icon')}`} fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`size-6 ${envClass(env, 'icon')}`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
               </svg>
             </div>
@@ -148,7 +150,7 @@ export function ConfigurableSidebar({ config,
       <SidebarCollapseToggle
         isCollapsed={isCollapsed}
         onToggle={() => setIsCollapsed(!isCollapsed)}
-        currentEnvironment={currentEnvironment}
+        currentEnvironment={env}
       />
     </div>
   )

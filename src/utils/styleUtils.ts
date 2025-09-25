@@ -1,5 +1,5 @@
-import type { Environment } from '../config/sidebarConfig';
-import { getThemeProperty } from '../config/environmentThemes';
+import { getThemeProperty } from '../config/environmentThemes'
+import type { Environment } from '../config/sidebarConfig'
 
 /**
  * 根据当前环境返回对应的样式类
@@ -7,11 +7,11 @@ import { getThemeProperty } from '../config/environmentThemes';
  * @param property 样式属性名称
  * @returns 根据环境选择的样式类
  */
-export function getEnvironmentClass(
+export function envClass(
   currentEnvironment: Environment,
   property: string
 ): string {
-  return getThemeProperty(currentEnvironment, property as any);
+  return getThemeProperty(currentEnvironment, property as any)
 }
 
 /**
@@ -26,7 +26,7 @@ export function getConditionalClass(
   trueClass: string,
   falseClass: string
 ): string {
-  return condition ? trueClass : falseClass;
+  return condition ? trueClass : falseClass
 }
 
 /**
@@ -39,15 +39,15 @@ export function getStatusBadgeClass(status: string): string {
     case 'success':
     case 'enabled':
     case 'paid':
-      return 'bg-green-100 text-green-800';
+      return 'bg-green-100 text-green-800'
     case 'failed':
     case 'disabled':
     case 'overdue':
-      return 'bg-red-100 text-red-800';
+      return 'bg-red-100 text-red-800'
     case 'pending':
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-yellow-100 text-yellow-800'
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-gray-100 text-gray-800'
   }
 }
 
@@ -63,5 +63,5 @@ export function getSidebarClass(
   collapsedClass: string,
   expandedClass: string
 ): string {
-  return isCollapsed ? collapsedClass : expandedClass;
+  return isCollapsed ? collapsedClass : expandedClass
 }

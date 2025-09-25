@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Environment, Supplier } from '../../config/sidebarConfig'
-import { getEnvironmentClass } from '../../utils/styleUtils'
+import { envClass } from '../../utils/styleUtils'
 
 interface ConfigSwitcherProps {
   currentSupplier: Supplier
@@ -10,6 +10,8 @@ interface ConfigSwitcherProps {
 }
 
 function ConfigSwitcher({ currentSupplier, currentEnvironment, onSupplierChange, onEnvironmentChange }: ConfigSwitcherProps) {
+  // 简短别名
+  const env = currentEnvironment
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -37,7 +39,7 @@ function ConfigSwitcher({ currentSupplier, currentEnvironment, onSupplierChange,
 
   // 处理环境切换
   const handleEnvironmentToggle = () => {
-    const newEnvironment = currentEnvironment === 'production' ? 'test' : 'production'
+    const newEnvironment = env === 'production' ? 'test' : 'production'
     onEnvironmentChange(newEnvironment)
     updateUrlWithEnvironment(newEnvironment)
   }
@@ -62,11 +64,11 @@ function ConfigSwitcher({ currentSupplier, currentEnvironment, onSupplierChange,
           <div className="flex items-center justify-center space-x-2 w-full">
             <span className="text-xs text-gray-600">测试环境</span>
             <div
-              className={`relative inline-block w-10 h-5 rounded-full transition-all cursor-pointer ${getEnvironmentClass(currentEnvironment, 'button')}`}
+              className={`relative inline-block w-10 h-5 rounded-full transition-all cursor-pointer ${envClass(currentEnvironment, 'button')}`}
               onClick={handleEnvironmentToggle}
             >
               <div
-                className={`absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-all ${currentEnvironment === 'production' ? 'translate-x-5' : 'translate-x-0'}`}
+                className={`absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-all ${env === 'production' ? 'translate-x-5' : 'translate-x-0'}`}
               ></div>
             </div>
             <span className="text-xs text-gray-600">生产环境</span>

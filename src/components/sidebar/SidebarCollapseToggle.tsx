@@ -1,5 +1,5 @@
 import type { Environment } from '../../config/sidebarConfig'
-import { getEnvironmentClass } from '../../utils/styleUtils'
+import { envClass } from '../../utils/styleUtils'
 
 interface SidebarCollapseToggleProps {
   isCollapsed: boolean
@@ -12,10 +12,12 @@ function SidebarCollapseToggle({
   onToggle,
   currentEnvironment
 }: SidebarCollapseToggleProps) {
+  // 简短别名
+  const env = currentEnvironment
   return (
     <button
       onClick={onToggle}
-      className={`absolute top-4 right-0 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-all z-30 ${getEnvironmentClass(currentEnvironment, 'background')}`}
+      className={`absolute top-4 right-0 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-all z-30 ${envClass(env, 'background')}`}
       aria-label={isCollapsed ? "展开侧边栏" : "折叠侧边栏"}
       type="button"
     >
