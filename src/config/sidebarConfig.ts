@@ -2,12 +2,12 @@ import type { SidebarConfig } from '../types/sidebar'
 import { PATHS } from './paths'
 
 // 定义供应商类型
-export type Supplier = 'alibaba' | 'tencent' | 'bytedance'
+export type Supplier = 'wyc' | 'kflower' | 'honghu'
 // 定义环境类型
 export type Environment = 'production' | 'test'
 
 // 阿里供应商配置
-export const alibabaConfig: Omit<SidebarConfig, 'logo'> = {
+export const wycConfig: Omit<SidebarConfig, 'logo'> = {
   items: [
     {
       id: 'general',
@@ -59,14 +59,14 @@ export const alibabaConfig: Omit<SidebarConfig, 'logo'> = {
   ],
   userInfo: {
     name: '阿里云用户',
-    email: 'alibaba@example.com',
+    email: 'wyc@example.com',
     avatarUrl: 'https://picsum.photos/id/1011/200',
     onClick: () => console.log('阿里云用户信息被点击'),
   },
 }
 
 // 腾讯供应商配置
-export const tencentConfig: Omit<SidebarConfig, 'logo'> = {
+export const kflowerConfig: Omit<SidebarConfig, 'logo'> = {
   items: [
     {
       id: 'general',
@@ -118,14 +118,14 @@ export const tencentConfig: Omit<SidebarConfig, 'logo'> = {
   ],
   userInfo: {
     name: '腾讯云用户',
-    email: 'tencent@example.com',
+    email: 'kflower@example.com',
     avatarUrl: 'https://picsum.photos/id/1012/200',
     onClick: () => console.log('腾讯云用户信息被点击'),
   },
 }
 
 // 字节供应商配置
-export const bytedanceConfig: Omit<SidebarConfig, 'logo'> = {
+export const honghuConfig: Omit<SidebarConfig, 'logo'> = {
   items: [
     {
       id: 'general',
@@ -177,7 +177,7 @@ export const bytedanceConfig: Omit<SidebarConfig, 'logo'> = {
   ],
   userInfo: {
     name: '字节云用户',
-    email: 'bytedance@example.com',
+    email: 'honghu@example.com',
     avatarUrl: 'https://picsum.photos/id/1013/200',
     onClick: () => console.log('字节云用户信息被点击'),
   },
@@ -198,13 +198,13 @@ export const testLogo = {
 // 根据供应商和环境获取完整配置
 export const getSidebarConfig = (supplier: Supplier, env: Environment): SidebarConfig => {
   const supplierConfig = {
-    alibaba: alibabaConfig,
-    tencent: tencentConfig,
-    bytedance: bytedanceConfig,
+    wyc: wycConfig,
+    kflower: kflowerConfig,
+    honghu: honghuConfig,
   }[supplier]
-  
+
   const logo = env === 'production' ? productionLogo : testLogo
-  
+
   return {
     logo,
     ...supplierConfig,
@@ -213,6 +213,6 @@ export const getSidebarConfig = (supplier: Supplier, env: Environment): SidebarC
 
 // 默认导出以便向后兼容
 export default {
-  devSidebarConfig: getSidebarConfig('alibaba', 'test'),
-  prodSidebarConfig: getSidebarConfig('alibaba', 'production'),
+  devSidebarConfig: getSidebarConfig('wyc', 'test'),
+  prodSidebarConfig: getSidebarConfig('wyc', 'production'),
 }

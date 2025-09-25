@@ -1,9 +1,9 @@
 import React from 'react'
 
 interface SidebarConfigSwitcherProps {
-  currentSupplier: 'alibaba' | 'tencent' | 'bytedance'
+  currentSupplier: 'wyc' | 'kflower' | 'honghu'
   currentEnvironment: 'production' | 'test'
-  onSupplierChange: (supplier: 'alibaba' | 'tencent' | 'bytedance') => void
+  onSupplierChange: (supplier: 'wyc' | 'kflower' | 'honghu') => void
   onEnvironmentChange: (environment: 'production' | 'test') => void
 }
 
@@ -14,7 +14,7 @@ function SidebarConfigSwitcher({
   onEnvironmentChange,
 }: SidebarConfigSwitcherProps) {
   const handleSupplierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onSupplierChange(event.target.value as 'alibaba' | 'tencent' | 'bytedance')
+    onSupplierChange(event.target.value as 'wyc' | 'kflower' | 'honghu')
   }
 
   const handleEnvironmentChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -30,12 +30,12 @@ function SidebarConfigSwitcher({
           onChange={handleSupplierChange}
           className="px-2 py-1 rounded border border-gray-300 text-xs transition-all"
         >
-          <option value="alibaba">阿里巴巴</option>
-          <option value="tencent">腾讯</option>
-          <option value="bytedance">字节</option>
+          <option value="wyc">阿里巴巴</option>
+          <option value="kflower">腾讯</option>
+          <option value="honghu">字节</option>
         </select>
       </div>
-      
+
       <div className="flex flex-col items-center">
         <label className="text-xs mb-1.5 text-gray-600">切换环境</label>
         <select

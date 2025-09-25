@@ -11,7 +11,7 @@ import { PATHS } from './paths'
 // 定义路由接口
 interface Route {
   path: string
-  component: React.FC
+  component: React.ElementType
 }
 
 // 定义应用的所有路由

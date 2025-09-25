@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ConfigurableSidebar } from './components/ConfigurableSidebar'
 import routes from './config/routes'
+import type { Environment, Supplier } from './config/sidebarConfig'
 import { getSidebarConfig } from './config/sidebarConfig'
-import type { Supplier, Environment } from './config/sidebarConfig'
 
 export default function App() {
   // 状态管理当前使用的供应商
-  const [currentSupplier, setCurrentSupplier] = useState<Supplier>('alibaba')
-  
+  const [currentSupplier, setCurrentSupplier] = useState<Supplier>('wyc')
+
   // 状态管理当前使用的环境
   const [currentEnvironment, setCurrentEnvironment] = useState<Environment>('test')
 
@@ -19,8 +19,8 @@ export default function App() {
     <BrowserRouter>
       <div className="flex h-screen bg-gray-50">
         {/* Sidebar */}
-        <ConfigurableSidebar 
-          config={sidebarConfig} 
+        <ConfigurableSidebar
+          config={sidebarConfig}
           currentSupplier={currentSupplier}
           currentEnvironment={currentEnvironment}
           onSupplierChange={setCurrentSupplier}
