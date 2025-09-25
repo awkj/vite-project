@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Environment, Supplier } from '../../config/sidebarConfig'
+import { getEnvironmentClass } from '../../utils/styleUtils'
 
 interface ConfigSwitcherProps {
   currentSupplier: Supplier
@@ -61,7 +62,7 @@ function ConfigSwitcher({ currentSupplier, currentEnvironment, onSupplierChange,
           <div className="flex items-center justify-center space-x-2 w-full">
             <span className="text-xs text-gray-600">测试环境</span>
             <div
-              className={`relative inline-block w-10 h-5 rounded-full transition-all cursor-pointer ${currentEnvironment === 'production' ? 'bg-blue-500' : 'bg-gray-300'}`}
+              className={`relative inline-block w-10 h-5 rounded-full transition-all cursor-pointer ${getEnvironmentClass(currentEnvironment, 'button')}`}
               onClick={handleEnvironmentToggle}
             >
               <div

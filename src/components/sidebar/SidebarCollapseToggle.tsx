@@ -1,5 +1,5 @@
-import React from 'react'
 import type { Environment } from '../../config/sidebarConfig'
+import { getEnvironmentClass } from '../../utils/styleUtils'
 
 interface SidebarCollapseToggleProps {
   isCollapsed: boolean
@@ -7,15 +7,15 @@ interface SidebarCollapseToggleProps {
   currentEnvironment: Environment
 }
 
-const SidebarCollapseToggle: React.FC<SidebarCollapseToggleProps> = ({ 
-  isCollapsed, 
-  onToggle, 
-  currentEnvironment 
-}) => {
+function SidebarCollapseToggle({
+  isCollapsed,
+  onToggle,
+  currentEnvironment
+}: SidebarCollapseToggleProps) {
   return (
     <button
       onClick={onToggle}
-      className={`absolute top-4 right-0 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-all z-30 ${currentEnvironment === 'production' ? 'bg-red-100' : 'bg-gray-100'}`}
+      className={`absolute top-4 right-0 -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-all z-30 ${getEnvironmentClass(currentEnvironment, 'background')}`}
       aria-label={isCollapsed ? "展开侧边栏" : "折叠侧边栏"}
       type="button"
     >
