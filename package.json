@@ -12,9 +12,11 @@
   "dependencies": {
     "@heroui/react": "^2.8.4",
     "@tailwindcss/vite": "^4.1.13",
+    "@zumer/snapdom": "^1.9.11",
     "framer-motion": "^12.23.16",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.2",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
