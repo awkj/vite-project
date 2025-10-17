@@ -1,14 +1,20 @@
-import { HeroUIProvider } from '@heroui/react'
+// Main.tsx
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
-
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HeroUIProvider>
-      <App />
-    </HeroUIProvider>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )
+
+
+
